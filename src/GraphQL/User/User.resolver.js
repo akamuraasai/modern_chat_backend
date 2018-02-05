@@ -9,6 +9,9 @@ const getUser = async (parent, { _id }, { User }) =>
 const createUser = async (root, { name }, { User }) =>
   idToString(await User.create({ name }));
 
+const removeUser = async (root, { _id }, { User }) =>
+  idToString(await User.findOneAndRemove({ _id }));
+
 export const Query = {
   users: getUsers,
   user: getUser,
@@ -16,4 +19,5 @@ export const Query = {
 
 export const Mutation = {
   createUser,
+  removeUser,
 };
