@@ -9,3 +9,7 @@ export const Query = `
   user(_id: String): User
   users: [User] 
 `;
+
+export const Mutation = `
+  createUser(name: String): User
+`;

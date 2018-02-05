@@ -12,3 +12,7 @@ export const Query = `
   message(_id: String): Message 
   messages: [Message] 
 `;
+
+export const Mutation = `
+  sendMessage(to: String, from: String, message: String, date: String): Message
+`;

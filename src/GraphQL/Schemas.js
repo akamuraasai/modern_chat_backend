@@ -1,8 +1,8 @@
 import { makeExecutableSchema } from 'graphql-tools';
-import { Message, Query as messageQuery } from './Message/Message.typeDef';
-import messageResolvers from './Message/Message.resolver';
-import { User, Query as userQuery } from './User/User.typeDef';
-import userResolvers from './User/User.resolver';
+import { Message, Query as messageQuery, Mutation as messageMutation } from './Message/Message.typeDef';
+import { Query as messageQueryResolver, Mutation as messageMutationResolver } from './Message/Message.resolver';
+import { User, Query as userQuery, Mutation as userMutation } from './User/User.typeDef';
+import { Query as userQueryResolver, Mutation as userMutationResolver } from './User/User.resolver';
 
 const typeDefs = `
   ${User}
@@ -11,12 +11,20 @@ const typeDefs = `
     ${userQuery}
     ${messageQuery}
   }
+  type Mutation {
+    ${messageMutation}
+    ${userMutation}
+  }
 `;
 
 const resolvers = {
   Query: {
-    ...userResolvers,
-    ...messageResolvers,
+    ...userQueryResolver,
+    ...messageQueryResolver,
+  },
+  Mutation: {
+    ...userMutationResolver,
+    ...messageMutationResolver,
   },
 };
 
